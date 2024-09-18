@@ -27,7 +27,7 @@ function updateButton(buttonEl, buttonTextEl, data) {
             e.preventDefault();
             try {
                 new URL(data.result);
-                window.location.href = data.result;
+                window.location.replace(data.result);
             } catch (e) {
                 document.querySelector('.media').insertAdjacentHTML('beforebegin', `<dialog style="width:100%;height:100%;overflow-y:auto;" open><pre>${data.result}</pre></dialog>`);
             }
