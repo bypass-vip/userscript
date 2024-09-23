@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       0.2
+// @version       0.3
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @include       /^https?:\/\/linkvertise\.com\/\d*\/\S*/
@@ -24,6 +24,7 @@
 // @include       /^https?:\/\/\adfoc[.]us\/\S*/
 // @include       /^https?:\/\/\bstlar[.]com\/\S*/
 // @include       /^https?:\/\/\work[.]ink\/\S*/
+// @include       /^https?:\/\/\workink[.]net\/\S*/
 // @include       /^https?:\/\/\cety[.]app\/\S*/
 // @grant         GM_addStyle
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
@@ -52,7 +53,7 @@ GM_addStyle(`
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 4px rgba(255, 255, 255, 0.2);
-    z-index: 999999;
+    z-index: 2147483648;
 }
 
 .bypass-vip-toast-header {
