@@ -172,5 +172,5 @@ document.querySelector("#bypass-vip-copy").addEventListener("click", () => {
     alert('Content has been copied to your clipboard');
 });
 document.querySelector("#bypass-vip-open").addEventListener("click", () => {
-    window.location.href = document.querySelector(".bypass-vip-toast-result").innerText
+    window.location.replace(document.querySelector(".bypass-vip-toast-result").innerText)
 });
