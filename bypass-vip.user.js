@@ -1,31 +1,31 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       0.3
+// @version       0.4
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
-// @include       /^https?:\/\/linkvertise\.com\/\d*\/\S*/
-// @include       /^https?:\/\/\S*[.]*\/s\?\S*/
-// @include       /^https?:\/\/\paster[.]so\/\S*/
-// @include       /^https?:\/\/\boost[.]ink\/\S*/
-// @include       /^https?:\/\/\mboost[.]me\/\S*/
-// @include       /^https?:\/\/\bst[.]gg\/\S*/
-// @include       /^https?:\/\/\booo[.]st\/\S*/
-// @include       /^https?:\/\/\socialwolvez[.]com\/\S*/
-// @include       /^https?:\/\/\www[.]sub2get[.]com\/\S*/
-// @include       /^https?:\/\/\sub2get[.]com\/\S*/
-// @include       /^https?:\/\/\v[.]gd\/\S*/
-// @include       /^https?:\/\/\unlocknow[.]net\/\S*/
-// @include       /^https?:\/\/\sub2unlock[.]com\/\S*/
-// @include       /^https?:\/\/\sub2unlock[.]net\/\S*/
-// @include       /^https?:\/\/\sub2unlock[.]io\/\S*/
-// @include       /^https?:\/\/\sub4unlock[.]io\/\S*/
-// @include       /^https?:\/\/\rekonise[.]com\/\S*/
-// @include       /^https?:\/\/\adfoc[.]us\/\S*/
-// @include       /^https?:\/\/\bstlar[.]com\/\S*/
-// @include       /^https?:\/\/\work[.]ink\/\S*/
-// @include       /^https?:\/\/\workink[.]net\/\S*/
-// @include       /^https?:\/\/\cety[.]app\/\S*/
+// @match         *://linkvertise.com/*/*
+// @match         *://*.*/s?*
+// @match         *://paster.so/*
+// @match         *://boost.ink/*
+// @match         *://mboost.me/*
+// @match         *://st.gg/*
+// @match         *://ooo.st/*
+// @match         *://socialwolvez.com/*
+// @match         *://www.sub2get.com/*
+// @match         *://sub2get.com/*
+// @match         *://v.gd/*
+// @match         *://unlocknow.net/*
+// @match         *://sub2unlock.com/*
+// @match         *://sub2unlock.net/*
+// @match         *://sub2unlock.io/*
+// @match         *://sub4unlock.io/*
+// @match         *://rekonise.com/*
+// @match         *://adfoc.us/*
+// @match         *://bstlar.com/*
+// @match         *://work.ink/*/*
+// @match         *://workink.net/*
+// @match         *://cety.app/*
 // @grant         GM_addStyle
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
@@ -33,144 +33,183 @@
 // @icon          https://www.google.com/s2/favicons?domain=bypass.vip&sz=64
 // @run-at document-idle
 // ==/UserScript==
-
-GM_addStyle(`
-.bypass-vip-logo {
-    width: 48px;
-    height: 48px;
-}
-
-.bypass-vip-toast-container {
-    font-family: 'Montserrat', sans-serif;
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    max-width: 50%; /* Increase the max-width to provide more space */
-    max-height: 100%;
-    background-color: rgba(50, 50, 50, 0.8);
-    color: white;
-    backdrop-filter: blur(10px);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 4px rgba(255, 255, 255, 0.2);
-    z-index: 2147483648;
-}
-
-.bypass-vip-toast-header {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.bypass-vip-close-button {
-    background: white;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border-radius: 8px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    color: black;
-}
-
-.bypass-vip-toast-actions button {
-    margin-top: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    border-radius: 8px;
-    min-width: 25%;
-    height: auto;
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.4);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.bypass-vip-toast-content {
-    padding: 15px;
-    overflow-y: auto;
-    word-wrap: break-word;
-    max-height: 200px;
-    text-align: center;
-    font-size: 16px;
-}
-
-.bypass-vip-toast-loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #FFF;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
+(function () {
+    if (document.title.includes('Just a moment...') || document.title.includes('Just a second...')) {
+        return;
     }
+    const config = {
+      time: 10, // Wait time to avoid detections (in seconds)
+      premium:false,// Use premium API to avoid hash detections
+      pr_apikey:"" // Premium api key
+    };
+    document.open();
+    document.write(`
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>BYPASS.VIP USERSCRIPT</title>
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+                body {
+                    background-color: #141414;
+                    color: white;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                }
+                .logo {
+                    width: 200px;
+                    margin-bottom: 2rem;
+                    opacity: 0;
+                    animation: fadeIn 1s ease forwards;
+                }
+                .dynamic-text {
+                    font-size: 1.2rem;
+                    margin-bottom: 2rem;
+                    opacity: 0;
+                    animation: fadeIn 1s ease 0.3s forwards;
+                }
+                .progress-container {
+                    width: 80%;
+                    max-width: 400px;
+                    background: rgba(255, 255, 255, 0.1);
+                    height: 4px;
+                    border-radius: 4px;
+                    overflow: hidden;
+                    opacity: 0;
+                    animation: fadeIn 1s ease 0.6s forwards;
+                }
+                .progress-bar {
+                    width: 0%;
+                    height: 100%;
+                    background: white;
+                    transition: width 0.5s ease;
+                }
+              .notification {
+                  position: fixed;
+                  bottom: 20px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  background: rgba(255, 255, 255, 0.1);
+                  padding: 1rem 2rem;
+                  border-radius: 8px;
+                  backdrop-filter: blur(5px);
+                  opacity: 0;
+                  animation: slideUp 0.5s ease 1s forwards, slideDown 0.5s ease 4s forwards;
+              }
 
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-`);
+              @keyframes slideUp {
+                  from {
+                      opacity: 0;
+                      transform: translate(-50%, 20px);
+                  }
+                  to {
+                      opacity: 1;
+                      transform: translate(-50%, 0);
+                  }
+              }
 
-document.querySelector("body").innerHTML += `
-    <div class="bypass-vip-toast-container">
-        <div class="bypass-vip-toast-header">
-            <img src="https://bypass.vip/assets/img/logo-light-nobg.png" alt="LOGO" class="bypass-vip-logo">
-            BYPASS.VIP
-            <button class="bypass-vip-close-button" onclick="this.parentElement.parentElement.remove();">&times;</button>
-        </div>
-        <div class="bypass-vip-toast-content">
-            <div class="bypass-vip-toast-result"></div>
-            <div class="bypass-vip-toast-loading">
-                <span class="bypass-vip-toast-loader"></span>
-                <p>Loading bypass...</p>
+              @keyframes slideDown {
+                  from {
+                      opacity: 1;
+                      transform: translate(-50%, 0);
+                  }
+                  to {
+                      opacity: 0;
+                      transform: translate(-50%, 20px);
+                  }
+              }
+
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @media (max-width: 480px) {
+                    .logo {
+                        width: 150px;
+                    }
+                    .dynamic-text {
+                        font-size: 1rem;
+                        text-align: center;
+                    }
+                    .progress-container {
+                        width: 90%;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <img src="https://bypass.vip/assets/img/logo-light-nobg.png" alt="BYPASS.VIP" class="logo">
+            <div class="dynamic-text">BYPASS.VIP is handling your link...</div>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
             </div>
-            <div class="bypass-vip-toast-actions" hidden>
-                <button id="bypass-vip-copy">Copy</button>
-                <button id="bypass-vip-open" hidden>Open</button>
-            </div>
-        </div>
-    </div>
-`;
+            <div class="notification">🚀 BYPASS.LAT & VIP merging! Get ready for a better experience 🚀</div>
+            <script>
+                const progressBar = document.querySelector('.progress-bar');
+                const dynamicText = document.querySelector('.dynamic-text');
+                let progress = 0;
 
-fetch(`https://api.bypass.vip/bypass?url=${encodeURIComponent(window.location.href)}`)
-    .then(response => response.json())
-    .then(data => {
-        document.querySelector(".bypass-vip-toast-loading").hidden = true;
-        if (data.status == 'success') {
-            document.querySelector(".bypass-vip-toast-actions").hidden = false;
-            document.querySelector(".bypass-vip-toast-result").innerText = data.result;
-            try {
-                new URL(data.result);
-                document.querySelector("#bypass-vip-open").hidden = false;
-            } catch (e) {}
-        } else {
-            document.querySelector(".bypass-vip-toast-result").innerText = data.message;
-        }
-    })
-    .catch(err => {
-        alert('Error bypassing link! The error has been logged to the console.');
-        console.error('Fetch Error:', err);
-    });
+                dynamicText.textContent = "Waiting ${config.time}s to start...";
 
-document.querySelector("#bypass-vip-copy").addEventListener("click", () => {
-    navigator.clipboard.writeText(document.querySelector(".bypass-vip-toast-result").innerText)
-    alert('Content has been copied to your clipboard');
-});
-document.querySelector("#bypass-vip-open").addEventListener("click", () => {
-    window.location.href = document.querySelector(".bypass-vip-toast-result").innerText
-});
+                setTimeout(() => {
+                    dynamicText.textContent = "BYPASS.VIP is handling your link...";
+                    const initialInterval = setInterval(() => {
+                        progress += 2;
+                        progressBar.style.width = "\${progress}%\";
+                        if (progress >= 40) {
+                            clearInterval(initialInterval);
+                            startBypass();
+                        }
+                    }, 100);
+                }, ${config.time} * 1000);
+
+                async function startBypass() {
+                    try {
+                        const apiUrl = \`https://api.bypass.vip/bypass?url=\${encodeURIComponent(location.href)}\`
+                        progressBar.style.width = '50%';
+                        const response = await fetch(apiUrl);
+                        let data = await response.json();
+
+                        if (!data.result) {
+                            dynamicText.textContent = 'Error processing link. Please try again.';
+                            return;
+                        }
+                        if (data.result.includes("hash=") && ${config.premium}) {
+                          dynamicText.textContent = 'Hash detections detected, bypassing...';
+                          const response = await fetch(\`https://rip.linkvertise.lol/premium/refresh?url=\${location.href}&apikey=${config.pr_apikey}\`);
+                          data = await response.json();
+                          console.log(data)
+                        }
+                        dynamicText.textContent = 'Redirecting...';
+                        let currentProgress = 50;
+                        const finalInterval = setInterval(() => {
+                            currentProgress++;
+                            progressBar.style.width = \`\${currentProgress}%\`;
+
+                            if (currentProgress >= 100) {
+                                clearInterval(finalInterval);
+                                window.location.href = data.result;
+                            }
+                        }, 50);
+                    } catch (error) {
+                        dynamicText.textContent = 'Error processing link. Please try again.';
+                    }
+                }
+            </script>
+
+        </body>
+        </html>
+    `);
+    document.close();
+})();
