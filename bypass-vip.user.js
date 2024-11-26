@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       0.4
+// @version       0.5
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://linkvertise.com/*/*
 // @match         *://*.*/s?*
+// @match         *://*/s?*
 // @match         *://paster.so/*
 // @match         *://boost.ink/*
 // @match         *://mboost.me/*
@@ -26,6 +27,8 @@
 // @match         *://work.ink/*/*
 // @match         *://workink.net/*
 // @match         *://cety.app/*
+// @exclude       *://google.com/*
+// @exclude       *://tria.ge/*
 // @grant         GM_addStyle
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
@@ -161,6 +164,7 @@
                 let progress = 0;
 
                 dynamicText.textContent = "Waiting ${config.time}s to start...";
+                const isUrl = input => { try { new URL(input.includes('http') ? input : "https://"+input); return true; } catch { return false; } };
 
                 setTimeout(() => {
                     dynamicText.textContent = "BYPASS.VIP is handling your link...";
@@ -199,7 +203,15 @@
 
                             if (currentProgress >= 100) {
                                 clearInterval(finalInterval);
-                                window.location.href = data.result;
+                                if (isUrl(data.result)){
+                                    window.location.href = data.result;
+                                    return;
+                                }else{
+                                    dynamicText.textContent = 'DirectPaste detected! Redirecting to Encrypted-Bytes RAW Response...';
+                                    fetch('https://iwoozie.baby/api/challenger/encrypted-bytes?text='+encodeURIComponent(data.result)).then(response => response.json()).then(data =>{
+                                        window.location.href=data.result
+                                    })
+                                }
                             }
                         }, 50);
                     } catch (error) {
