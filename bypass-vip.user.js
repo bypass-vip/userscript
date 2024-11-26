@@ -203,7 +203,7 @@
 
                             if (currentProgress >= 100) {
                                 clearInterval(finalInterval);
-                                if (isUrl(data.result)){
+                                if (isUrl(data.result) && data.result.startsWith("http")){
                                     window.location.href = data.result;
                                     return;
                                 }else{
