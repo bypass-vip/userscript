@@ -77,7 +77,7 @@
 // @match         *://holyfanslinks.com/*
 // @match         *://utopianleaks.com/*
 // @match         *://megavip.store/*
-// @match         *://linkvertise.com/*
+// @match         *://linkvertise.com/*/*
 // @match         *://drlinker.com/*
 // @match         *://baddiesheaven.com/*
 // @match         *://of4lm-links.com/*
