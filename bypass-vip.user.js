@@ -1,227 +1,208 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       0.5
+// @version       1.0
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
-// @match         *://linkvertise.com/*/*
-// @match         *://*.*/s?*
-// @match         *://*/s?*
-// @match         *://paster.so/*
-// @match         *://boost.ink/*
-// @match         *://mboost.me/*
-// @match         *://st.gg/*
-// @match         *://ooo.st/*
-// @match         *://socialwolvez.com/*
-// @match         *://www.sub2get.com/*
-// @match         *://sub2get.com/*
-// @match         *://v.gd/*
-// @match         *://unlocknow.net/*
-// @match         *://sub2unlock.com/*
-// @match         *://sub2unlock.net/*
-// @match         *://sub2unlock.io/*
-// @match         *://sub4unlock.io/*
-// @match         *://rekonise.com/*
+// @match         *://mega-guy.com/*
+// @match         *://loot-link.com/*
+// @match         *://best-links.org/*
+// @match         *://loot-links.com/*
+// @match         *://megaspremium.com/*
+// @match         *://lootdest.com/*
+// @match         *://direct-links.net/*
+// @match         *://risquemega.com/*
+// @match         *://onlyfriends.club/*
+// @match         *://onepiecered.co/*
+// @match         *://multileaks.com/*
+// @match         *://luvsquad-links.com/*
+// @match         *://lootdest.org/*
+// @match         *://free-leaks.com/*
+// @match         *://goldmega.online/*
+// @match         *://realiukzemydre.com/*
+// @match         *://kmendation.com/*
+// @match         *://lootlinks.co/*
+// @match         *://onlyshare.info/*
+// @match         *://leakplugs.com/*
+// @match         *://nswfbox.com/*
+// @match         *://eofmukindwo.com/*
+// @match         *://op-packs.com/*
+// @match         *://thedetective.online/*
+// @match         *://forlinkmeg.com/*
+// @match         *://thegoatpack.org/*
+// @match         *://of-leaks.xyz/*
+// @match         *://links.spacebin.in/*
+// @match         *://supermeg.com/*
+// @match         *://onlyfanessereloaded.com/*
+// @match         *://fanzleaks.com/*
+// @match         *://cemendemons.com/*
+// @match         *://premiummegaz.com/*
+// @match         *://thepremium.online/*
+// @match         *://pasteebins.com/*
+// @match         *://baddiezcentral.com/*
+// @match         *://megazone.website/*
+// @match         *://leak-pragmatic.com/*
+// @match         *://megadumpz.com/*
+// @match         *://thhaven.net/*
+// @match         *://meg4fans.com/*
+// @match         *://depravityweb.co/*
+// @match         *://discordlink.cc/*
+// @match         *://megashub.co/*
+// @match         *://streamergirls.org/*
+// @match         *://your-leaks.com/*
+// @match         *://onlylinksmegas.xyz/*
+// @match         *://pypy.spacebin.in/*
+// @match         *://pypy.in/*
+// @match         *://luvsquad-links.cmo/*
+// @match         *://beast.net.in/*
+// @match         *://hook.beast.net.in/*
+// @match         *://all-fans.online/*
+// @match         *://fansmega.com/*
+// @match         *://worldpacks.co/*
+// @match         *://night-hub.online/*
+// @match         *://dailyofleaks.com/*
+// @match         *://pkofs.com/*
+// @match         *://offree90.com/*
+// @match         *://megadropz.com/*
+// @match         *://onlyfunlink.com/*
+// @match         *://direct-links.org/*
+// @match         *://leaks4you.com/*
+// @match         *://onlylinksmegas.com/*
+// @match         *://direct-link.net/*
+// @match         *://downbadleaks.com/*
+// @match         *://onlyfanscloud.com/*
+// @match         *://missleakz.com/*
+// @match         *://leakszone.online/*
+// @match         *://links-loot.com/*
+// @match         *://holyfanslinks.com/*
+// @match         *://utopianleaks.com/*
+// @match         *://megavip.store/*
+// @match         *://linkvertise.com/*
+// @match         *://drlinker.com/*
+// @match         *://baddiesheaven.com/*
+// @match         *://of4lm-links.com/*
+// @match         *://holedonly.store/*
+// @match         *://lootlinks.com/*
+// @match         *://free-content.pro/*
+// @match         *://milky-center.com/*
+// @match         *://megaofs.com/*
+// @match         *://bleleadersto.com/*
+// @match         *://link-target.org/*
+// @match         *://daughablelea.com/*
+// @match         *://mymegalinks.com/*
+// @match         *://heroslut.com/*
+// @match         *://tonordersitye.com/*
+// @match         *://vip-linknetwork.com/*
+// @match         *://birdbiss.com/*
+// @match         *://loot-labs.com/*
+// @match         *://lootlabs.com/*
+// @match         *://link-hub.net/*
+// @match         *://locconnect.com/*
+// @match         *://premiumstashdrop.com/*
+// @match         *://lootdest.info/*
+// @match         *://of-area.com/*
+// @match         *://gateway.platoboost.com/*
+// @match         *://link-target.net/*
+// @match         *://megalnk.com/*
+// @match         *://lootlink.org/*
+// @match         *://nsfwcherry.com/*
+// @match         *://cherrypacks.online/*
+// @match         *://hotstars-leaks.com/*
+// @match         *://onlymega.co/*
+// @match         *://hanimeturks.com/*
+// @match         *://dailyleakz.com/*
+// @match         *://content-hub.club/*
+// @match         *://dailyadultmegas.com/*
+// @match         *://oui-chu.com/*
+// @match         *://megalinks.one/*
+// @match         *://starleakz.com/*
+// @match         *://babeslink.click/*
+// @match         *://ofgirls3x.com/*
+// @match         *://pnp-drops.me/*
+// @match         *://nsfw-paradise.club/*
+// @match         *://key-access.co/*
+// @match         *://leaksmix.com/*
+// @match         *://sensual-leaks.com/*
+// @match         *://ofhub-leaks.com/*
+// @match         *://onlyforfan.online/*
+// @match         *://sweetjuice-mega.com/*
+// @match         *://crip-hub.com/*
+// @match         *://leaksfreeday.com/*
+// @match         *://thotshaven.online/*
+// @match         *://mega-leaked.com/*
+// @match         *://beautifulgirls.social/*
+// @match         *://tavernleaks.com/*
+// @match         *://nudeleaksteenz.com/*
+// @match         *://slutywet.com/*
+// @match         *://leakutopia.site/*
+// @match         *://secret-packs.com/*
+// @match         *://attiktok22.com/*
+// @match         *://pancakes-leaks.com/*
+// @match         *://diamond-leaks.com/*
+// @match         *://lewd-leaks.com/*
+// @match         *://ftbleaks.net/*
+// @match         *://thepytheaven.org/*
+// @match         *://of-region.online/*
+// @match         *://admiregirls-byme.com/*
+// @match         *://mzehoney12.com/*
+// @match         *://herplace.online/*
+// @match         *://megaplugleaks.com/*
+// @match         *://of-kingdom.com/*
+// @match         *://onlyfansmegafolder.com/*
+// @match         *://links.spacebin.in/*
 // @match         *://adfoc.us/*
-// @match         *://bstlar.com/*
-// @match         *://work.ink/*/*
-// @match         *://workink.net/*
+// @match         *://boost.ink/*
+// @match         *://cuty.io/*
+// @match         *://www.cuty.io/*
 // @match         *://cety.app/*
-// @exclude       *://google.com/*
-// @exclude       *://tria.ge/*
-// @grant         GM_addStyle
+// @match         *://www.cety.app/*
+// @match         *://linkvertise.com/*
+// @match         *://mboost.me/*
+// @match         *://bst.gg/*
+// @match         *://booo.st/*
+// @match         *://mendationforc.info/*
+// @match         *://paster.so/*
+// @match         *://rekonise.com/*
+// @match         *://social-unlock.com/*
+// @match         *://www.social-unlock.com/*
+// @match         *://socialwolvez.com/*
+// @match         *://sub2get.com/*
+// @match         *://www.sub2get.com/*
+// @match         *://sub2unlock.com/*
+// @match         *://sub2unlock.io/*
+// @match         *://sub2unlock.net/*
+// @match         *://sub2unlock.online/*
+// @match         *://subfinal.com/*
+// @match         *://unlocknow.net/*
+// @match         *://v.gd/*
+// @match         *://work.ink/*
+// @match         *://www.work.ink/*
+// @match         *://workink.net/*
+// @match         *://r.work.ink/*
+// @match         *://workink.one/*
+// @match         *://workink.me/*
+// @match         *://ytsubme.com/*
+// @match         *://www.ytsubme.com/*
+// @match         *://esohasl.net/*
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @homepageURL   https://bypass.vip
 // @icon          https://www.google.com/s2/favicons?domain=bypass.vip&sz=64
-// @run-at document-idle
+// @run-at document-start
 // ==/UserScript==
+
 (function () {
+    const config = {
+      time: 10, // Wait time to avoid detections (Increase this to 30+ seconds to be extra safe from key system bypass protections)
+      key: '' //Premium key if you have one
+    };
     if (document.title.includes('Just a moment...') || document.title.includes('Just a second...')) {
         return;
     }
-    const config = {
-      time: 10, // Wait time to avoid detections (in seconds)
-      premium:false,// Use premium API to avoid hash detections
-      pr_apikey:"" // Premium api key
-    };
-    document.open();
-    document.write(`
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>BYPASS.VIP USERSCRIPT</title>
-            <style>
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-                body {
-                    background-color: #141414;
-                    color: white;
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-                    min-height: 100vh;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 20px;
-                }
-                .logo {
-                    width: 200px;
-                    margin-bottom: 2rem;
-                    opacity: 0;
-                    animation: fadeIn 1s ease forwards;
-                }
-                .dynamic-text {
-                    font-size: 1.2rem;
-                    margin-bottom: 2rem;
-                    opacity: 0;
-                    animation: fadeIn 1s ease 0.3s forwards;
-                }
-                .progress-container {
-                    width: 80%;
-                    max-width: 400px;
-                    background: rgba(255, 255, 255, 0.1);
-                    height: 4px;
-                    border-radius: 4px;
-                    overflow: hidden;
-                    opacity: 0;
-                    animation: fadeIn 1s ease 0.6s forwards;
-                }
-                .progress-bar {
-                    width: 0%;
-                    height: 100%;
-                    background: white;
-                    transition: width 0.5s ease;
-                }
-              .notification {
-                  position: fixed;
-                  bottom: 20px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  background: rgba(255, 255, 255, 0.1);
-                  padding: 1rem 2rem;
-                  border-radius: 8px;
-                  backdrop-filter: blur(5px);
-                  opacity: 0;
-                  animation: slideUp 0.5s ease 1s forwards, slideDown 0.5s ease 4s forwards;
-              }
-
-              @keyframes slideUp {
-                  from {
-                      opacity: 0;
-                      transform: translate(-50%, 20px);
-                  }
-                  to {
-                      opacity: 1;
-                      transform: translate(-50%, 0);
-                  }
-              }
-
-              @keyframes slideDown {
-                  from {
-                      opacity: 1;
-                      transform: translate(-50%, 0);
-                  }
-                  to {
-                      opacity: 0;
-                      transform: translate(-50%, 20px);
-                  }
-              }
-
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                @media (max-width: 480px) {
-                    .logo {
-                        width: 150px;
-                    }
-                    .dynamic-text {
-                        font-size: 1rem;
-                        text-align: center;
-                    }
-                    .progress-container {
-                        width: 90%;
-                    }
-                }
-            </style>
-        </head>
-        <body>
-            <img src="https://bypass.vip/assets/img/logo-light-nobg.png" alt="BYPASS.VIP" class="logo">
-            <div class="dynamic-text">BYPASS.VIP is handling your link...</div>
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-            </div>
-            <div class="notification">🚀 BYPASS.LAT & VIP merging! Get ready for a better experience 🚀</div>
-            <script>
-                const progressBar = document.querySelector('.progress-bar');
-                const dynamicText = document.querySelector('.dynamic-text');
-                let progress = 0;
-
-                dynamicText.textContent = "Waiting ${config.time}s to start...";
-                const isUrl = input => { try { new URL(input.includes('http') ? input : "https://"+input); return true; } catch { return false; } };
-
-                setTimeout(() => {
-                    dynamicText.textContent = "BYPASS.VIP is handling your link...";
-                    const initialInterval = setInterval(() => {
-                        progress += 2;
-                        progressBar.style.width = "\${progress}%\";
-                        if (progress >= 40) {
-                            clearInterval(initialInterval);
-                            startBypass();
-                        }
-                    }, 100);
-                }, ${config.time} * 1000);
-
-                async function startBypass() {
-                    try {
-                        const apiUrl = \`https://api.bypass.vip/bypass?url=\${encodeURIComponent(location.href)}\`
-                        progressBar.style.width = '50%';
-                        const response = await fetch(apiUrl);
-                        let data = await response.json();
-
-                        if (!data.result) {
-                            dynamicText.textContent = 'Error processing link. Please try again.';
-                            return;
-                        }
-                        if (data.result.includes("hash=") && ${config.premium}) {
-                          dynamicText.textContent = 'Hash detections detected, bypassing...';
-                          const response = await fetch(\`https://rip.linkvertise.lol/premium/refresh?url=\${location.href}&apikey=${config.pr_apikey}\`);
-                          data = await response.json();
-                          console.log(data)
-                        }
-                        dynamicText.textContent = 'Redirecting...';
-                        let currentProgress = 50;
-                        const finalInterval = setInterval(() => {
-                            currentProgress++;
-                            progressBar.style.width = \`\${currentProgress}%\`;
-
-                            if (currentProgress >= 100) {
-                                clearInterval(finalInterval);
-                                if (isUrl(data.result) && data.result.startsWith("http")){
-                                    window.location.href = data.result;
-                                    return;
-                                }else{
-                                    dynamicText.textContent = 'DirectPaste detected! Redirecting to Encrypted-Bytes RAW Response...';
-                                    fetch('https://iwoozie.baby/api/challenger/encrypted-bytes?text='+encodeURIComponent(data.result)).then(response => response.json()).then(data =>{
-                                        window.location.href=data.result
-                                    })
-                                }
-                            }
-                        }, 50);
-                    } catch (error) {
-                        dynamicText.textContent = 'Error processing link. Please try again.';
-                    }
-                }
-            </script>
-
-        </body>
-        </html>
-    `);
-    document.close();
+    const redirectUri = new URLSearchParams(window.location.search).get('redirect');
+    if (redirectUri) {
+        location.href = decodeURIComponent(redirectUri);
+        return;
+    }
+    location.href=`https://bypass.vip/userscript?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
 })();
