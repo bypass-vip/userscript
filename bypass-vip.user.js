@@ -162,6 +162,7 @@
 // @match         *://booo.st/*
 // @match         *://mendationforc.info/*
 // @match         *://paster.so/*
+// @match         *://paster.gg/*
 // @match         *://rekonise.com/*
 // @match         *://social-unlock.com/*
 // @match         *://www.social-unlock.com/*
