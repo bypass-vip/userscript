@@ -188,10 +188,10 @@
 // @match         *://ytsubme.com/*
 // @match         *://www.ytsubme.com/*
 // @match         *://esohasl.net/*
-// @match		  *://rbscripts.net/*
-// @match		  *://link.rbscripts.net/*
+// @match         *://rbscripts.net/*
+// @match         *://link.rbscripts.net/*
 // @match         *://flux.li/android/external/*
-// @match         *://mobile.codex.lol/*
+// @match         *://mobile.codex.lol/?token=*
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @homepageURL   https://bypass.vip
