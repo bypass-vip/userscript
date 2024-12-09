@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       1.1
+// @version       1.2
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://mega-guy.com/*
@@ -191,7 +191,6 @@
 // @match         *://rbscripts.net/*
 // @match         *://link.rbscripts.net/*
 // @match         *://flux.li/android/external/*
-// @match         *://mobile.codex.lol/?token=*
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @homepageURL   https://bypass.vip
