@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       1.0
+// @version       1.1
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://mega-guy.com/*
@@ -77,7 +77,6 @@
 // @match         *://holyfanslinks.com/*
 // @match         *://utopianleaks.com/*
 // @match         *://megavip.store/*
-// @match         *://linkvertise.com/*/*
 // @match         *://drlinker.com/*
 // @match         *://baddiesheaven.com/*
 // @match         *://of4lm-links.com/*
@@ -156,7 +155,7 @@
 // @match         *://www.cuty.io/*
 // @match         *://cety.app/*
 // @match         *://www.cety.app/*
-// @match         *://linkvertise.com/*
+// @match         *://linkvertise.com/*/*
 // @match         *://mboost.me/*
 // @match         *://bst.gg/*
 // @match         *://booo.st/*
@@ -173,6 +172,10 @@
 // @match         *://sub2unlock.io/*
 // @match         *://sub2unlock.net/*
 // @match         *://sub2unlock.online/*
+// @match         *://sub2unlock.top/*
+// @match         *://sub4unlock.pro/*
+// @match         *://sub4unlock.com/*
+// @match         *://sub4unlock.io/*
 // @match         *://subfinal.com/*
 // @match         *://unlocknow.net/*
 // @match         *://v.gd/*
@@ -185,6 +188,10 @@
 // @match         *://ytsubme.com/*
 // @match         *://www.ytsubme.com/*
 // @match         *://esohasl.net/*
+// @match		  *://rbscripts.net/*
+// @match		  *://link.rbscripts.net/*
+// @match         *://flux.li/android/external/*
+// @match         *://mobile.codex.lol/*
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @homepageURL   https://bypass.vip
@@ -202,7 +209,7 @@
     }
     const redirectUri = new URLSearchParams(window.location.search).get('redirect');
     if (redirectUri) {
-        location.href = decodeURIComponent(redirectUri);
+        window.open(decodeURIComponent(redirectUri));
         return;
     }
     location.href=`https://bypass.vip/userscript?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
