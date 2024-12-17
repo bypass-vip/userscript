@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       1.2
+// @version       1.3
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://mega-guy.com/*
@@ -190,7 +190,6 @@
 // @match         *://esohasl.net/*
 // @match         *://rbscripts.net/*
 // @match         *://link.rbscripts.net/*
-// @match         *://flux.li/android/external/*
 // @downloadURL   https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @homepageURL   https://bypass.vip
@@ -208,7 +207,7 @@
     }
     const redirectUri = new URLSearchParams(window.location.search).get('redirect');
     if (redirectUri) {
-        window.open(decodeURIComponent(redirectUri));
+        document.head.innerHTML = `<meta http-equiv="refresh" content="0;url=${decodeURIComponent(redirectUri)}">`;
         return;
     }
     location.href=`https://bypass.vip/userscript?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
