@@ -100,7 +100,6 @@
 // @match         *://premiumstashdrop.com/*
 // @match         *://lootdest.info/*
 // @match         *://of-area.com/*
-// @match         *://gateway.platoboost.com/*
 // @match         *://link-target.net/*
 // @match         *://megalnk.com/*
 // @match         *://lootlink.org/*
