@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       1.3
+// @version       1.4
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://mega-guy.com/*
@@ -196,18 +196,31 @@
 // @run-at document-start
 // ==/UserScript==
 
-(function () {
+(async () => {
+    window.stop();
+
     const config = {
-      time: 10, // Wait time to avoid detections (Increase this to 30+ seconds to be extra safe from key system bypass protections)
-      key: '' //Premium key if you have one
+        time: 10, // Wait time to avoid detections (Increase this to 30+ seconds to be extra safe from key system bypass protections)
+        key: '' //Premium key if you have one
     };
     if (document.title.includes('Just a moment...') || document.title.includes('Just a second...')) {
         return;
     }
-    const redirectUri = new URLSearchParams(window.location.search).get('redirect');
-    if (redirectUri) {
-        document.head.innerHTML = `<meta http-equiv="refresh" content="0;url=${decodeURIComponent(redirectUri)}">`;
+
+    document.documentElement.innerHTML = `<html><head><link rel="stylesheet" href="https:///bypass.vip/assets/css/styles.css"></head><body class="userscript"><h1>bypass.vip userscript</h1><h2>redirecting...</h2></body></html>`;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect')
+
+    if (!redirectUrl) {
+        location.href = `https://bypass.vip/userscript.html?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
         return;
     }
-    location.href=`https://bypass.vip/userscript?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
+
+    if (redirectUrl.includes('https://flux.li/android/external/main.php')) {
+        document.body.innerHTML = `<h1>bypass.vip userscript</h1><h2>Fluxus implements some extra security checks to detect bypasses so we can't automatically redirect you.</h2><h3><a href="${decodeURIComponent(redirectUrl)}">Click here to redirect</a></h3>`;
+        return
+    }
+    location.href = decodeURIComponent(redirectUrl)
+    return
 })();
