@@ -218,9 +218,9 @@
     }
 
     if (redirectUrl.includes('https://flux.li/android/external/main.php')) {
-        document.body.innerHTML = `<h1>bypass.vip userscript</h1><h2>Fluxus implements some extra security checks to detect bypasses so we can't automatically redirect you.</h2><h3><a href="${decodeURIComponent(redirectUrl)}">Click here to redirect</a></h3>`;
+        document.body.innerHTML = `<h1>bypass.vip userscript</h1><h2>Fluxus implements some extra security checks to detect bypasses so we can't automatically redirect you.</h2><h3><a href="${redirectUrl}">Click here to redirect</a></h3>`;
         return
     }
-    location.href = decodeURIComponent(redirectUrl)
+    location.href = redirectUrl
     return
 })();
