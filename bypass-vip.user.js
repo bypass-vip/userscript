@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       1.4
+// @version       1.4.1
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://mega-guy.com/*
@@ -197,30 +197,32 @@
 // ==/UserScript==
 
 (async () => {
-    window.stop();
-
     const config = {
         time: 10, // Wait time to avoid detections (Increase this to 30+ seconds to be extra safe from key system bypass protections)
         key: '' //Premium key if you have one
     };
-    if (document.title.includes('Just a moment...') || document.title.includes('Just a second...')) {
-        return;
-    }
 
-    document.documentElement.innerHTML = `<html><head><link rel="stylesheet" href="https:///bypass.vip/assets/css/styles.css"></head><body class="userscript"><h1>bypass.vip userscript</h1><h2>redirecting...</h2></body></html>`;
+    const originalCreateElement = document.createElement.bind(document);
+    document.createElement = function(elementName) {
+        const element = originalCreateElement(elementName);
+        if (elementName.toLowerCase() === 'script') {
+            element.setAttribute('type', 'text/plain');
+        }
+        return element;
+    };
+
+    document.documentElement.innerHTML = `<html><head><title>BYPASS.VIP USERSCRIPT</title><link rel="stylesheet" href="https:///bypass.vip/assets/css/styles.css"></head><body class="userscript"><h1>bypass.vip userscript</h1><h2>redirecting...</h2></body></html>`;
 
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get('redirect')
 
-    if (!redirectUrl) {
-        location.href = `https://bypass.vip/userscript.html?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
+    if (redirectUrl && redirectUrl.includes('https://flux.li/android/external/main.php')) {
+        document.body.innerHTML = `<h1>bypass.vip userscript</h1><h2>Fluxus implements some extra security checks to detect bypasses so we can't automatically redirect you.</h2><h3><a href="${redirectUrl}">Click here to redirect</a></h3>`;
+        return;
+    } else if(redirectUrl) {
+        location.href = redirectUrl
         return;
     }
-
-    if (redirectUrl.includes('https://flux.li/android/external/main.php')) {
-        document.body.innerHTML = `<h1>bypass.vip userscript</h1><h2>Fluxus implements some extra security checks to detect bypasses so we can't automatically redirect you.</h2><h3><a href="${redirectUrl}">Click here to redirect</a></h3>`;
-        return
-    }
-    location.href = redirectUrl
-    return
+    location.href = `https://bypass.vip/userscript.html?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
+    return;
 })();
