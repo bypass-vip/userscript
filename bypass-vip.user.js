@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       1.4.1
+// @version       1.4.2
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://mega-guy.com/*
@@ -193,36 +193,145 @@
 // @updateURL     https://raw.githubusercontent.com/bypass-vip/userscript/master/bypass-vip.user.js
 // @homepageURL   https://bypass.vip
 // @icon          https://www.google.com/s2/favicons?domain=bypass.vip&sz=64
-// @run-at document-start
+// @run-at        document-start
 // ==/UserScript==
 
 (async () => {
+    'use strict';
+
     const config = {
-        time: 10, // Wait time to avoid detections (Increase this to 30+ seconds to be extra safe from key system bypass protections)
-        key: '' //Premium key if you have one
+        time: 10,
+        key: '',
+        safeMode: true
     };
 
-    const originalCreateElement = document.createElement.bind(document);
-    document.createElement = function(elementName) {
-        const element = originalCreateElement(elementName);
-        if (elementName.toLowerCase() === 'script') {
-            element.setAttribute('type', 'text/plain');
-        }
-        return element;
-    };
-
-    document.documentElement.innerHTML = `<html><head><title>BYPASS.VIP USERSCRIPT</title><link rel="stylesheet" href="https:///bypass.vip/assets/css/styles.css"></head><body class="userscript"><h1>bypass.vip userscript</h1><h2>redirecting...</h2></body></html>`;
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirectUrl = urlParams.get('redirect')
-
-    if (redirectUrl && redirectUrl.includes('https://flux.li/android/external/main.php')) {
-        document.body.innerHTML = `<h1>bypass.vip userscript</h1><h2>Fluxus implements some extra security checks to detect bypasses so we can't automatically redirect you.</h2><h3><a href="${redirectUrl}">Click here to redirect</a></h3>`;
-        return;
-    } else if(redirectUrl) {
-        location.href = redirectUrl
-        return;
+    function createContainer() {
+        const container = document.createElement('div');
+        container.id = 'userscript-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            z-index: 2147483647;
+            font-family: 'Arial', sans-serif;
+            overflow: auto;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        `;
+        container.innerHTML = `
+            <h2 style="font-size: 2em; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">BYPASS.VIP USERSCRIPT</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em; color: #b0b0b0;">Click the button below to proceed to the bypassed link.</p>
+            <div id="countdown" style="font-size: 1.3em; margin-bottom: 30px; padding: 10px; background: #1e1e1e; border-radius: 8px; width: 80%; max-width: 600px;"></div>
+            <button id="nextBtn" style="padding: 12px 24px; background-color: #1E88E5; color: #ffffff; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; font-size: 1.1em; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);">Next</button>
+            <div id="errorMsg" style="color: #ff4d4d; margin-top: 30px; display: none; font-size: 1.1em; background: #2a2a2a; padding: 10px; border-radius: 8px;"></div>
+            <div id="spinner" style="border: 5px solid #333333; border-top: 5px solid #1E88E5; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; display: none; margin-top: 20px;"></div>
+            <style>
+                @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                #nextBtn:hover { background-color: #1565C0; transform: translateY(-2px); }
+                #nextBtn:active { transform: translateY(0); }
+            </style>
+        `;
+        return container;
     }
-    location.href = `https://bypass.vip/userscript.html?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`
-    return;
+
+    function showError(message) {
+        const errorEl = document.getElementById('errorMsg');
+        if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+        }
+        console.error(message);
+    }
+
+    function isValidUrl(url) {
+        try {
+            new URL(url);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    try {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runScript);
+        } else {
+            runScript();
+        }
+
+        function runScript() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let redirectUrl = urlParams.get('redirect');
+
+            if (!redirectUrl) {
+                const targetUrl = `https://bypass.vip/userscript.html?url=${encodeURIComponent(location.href)}&time=${config.time}&key=${config.key}`;
+                location.replace(targetUrl);
+                return;
+            }
+
+            try {
+                redirectUrl = decodeURIComponent(redirectUrl);
+                if (!isValidUrl(redirectUrl)) {
+                    throw new Error('Invalid redirect URL');
+                }
+            } catch (err) {
+                showError('Error: Invalid or malformed redirect URL. Please try again.');
+                return;
+            }
+
+            const container = createContainer();
+            document.documentElement.appendChild(container);
+
+            const countdownEl = document.getElementById('countdown');
+            const btn = document.getElementById('nextBtn');
+            const spinner = document.getElementById('spinner');
+
+            const hasHash = url => url.includes('hash=');
+
+            if (hasHash(redirectUrl)) {
+                let time = 8;
+                countdownEl.style.color = '#ff4d4d';
+                countdownEl.style.fontWeight = 'bold';
+                const interval = setInterval(() => {
+                    countdownEl.textContent = `YOU HAVE EXACTLY ${time} SECONDS TO CLICK THE BUTTON BEFORE YOUR HASH EXPIRES`;
+                    time--;
+                    if (time < 0) {
+                        clearInterval(interval);
+                        countdownEl.textContent = "HASH EXPIRED. RETRYING...";
+                        countdownEl.style.color = '';
+                        countdownEl.style.fontWeight = '';
+                        btn.disabled = true;
+                        spinner.style.display = 'block';
+                        setTimeout(() => {
+                            location.replace(location.href.split('?')[0]);
+                        }, 3500);
+                    }
+                }, 1000);
+            } else {
+                countdownEl.style.display = 'none';
+            }
+
+            btn.addEventListener('click', () => {
+                if (!btn.disabled && redirectUrl) {
+                    btn.disabled = true;
+                    spinner.style.display = 'block';
+                    location.replace(redirectUrl);
+                }
+            });
+        }
+    } catch (err) {
+        console.error('Userscript error:', err);
+        if (document.body) {
+            document.body.innerHTML = `<div style="color: #ff4d4d; text-align: center; padding: 40px; background: #121212; height: 100vh; display: flex; align-items: center; justify-content: center; font-size: 1.2em;">Error in bypass script: ${err.message}. Please reload the page.</div>`;
+        }
+    }
 })();
