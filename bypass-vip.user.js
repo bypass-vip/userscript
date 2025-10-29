@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          BYPASS.VIP BYPASSER
 // @namespace     bypass.vip
-// @version       1.4.3
+// @version       1.4.4
 // @author        bypass.vip
 // @description   Bypass ad-links using the bypass.vip API and get to your destination without ads!
 // @match         *://mega-guy.com/*
@@ -197,6 +197,7 @@
 // ==/UserScript==
 (async () => {
     'use strict';
+    if (window.top !== window.self) {return;};
     const config = {
         time: 10,
         key: '',
